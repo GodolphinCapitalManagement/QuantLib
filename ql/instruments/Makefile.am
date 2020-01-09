@@ -35,6 +35,7 @@ this_include_HEADERS = \
     futures.hpp \
     impliedvolatility.hpp \
     inflationcapfloor.hpp \
+    loan.hpp \
     lookbackoption.hpp \
     makecapfloor.hpp \
     makecds.hpp \
@@ -92,6 +93,7 @@ cpp_files = \
     futures.cpp \
     impliedvolatility.cpp \
     inflationcapfloor.cpp \
+    loan.cpp \
     lookbackoption.cpp \
     makecapfloor.cpp \
     makecds.cpp \

@@ -16,6 +16,7 @@
 #include <ql/pricingengines/barrier/all.hpp>
 #include <ql/pricingengines/basket/all.hpp>
 #include <ql/pricingengines/bond/all.hpp>
+#include <ql/pricingengines/loan/all.hpp>
 #include <ql/pricingengines/capfloor/all.hpp>
 #include <ql/pricingengines/cliquet/all.hpp>
 #include <ql/pricingengines/credit/all.hpp>

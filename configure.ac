@@ -452,6 +452,7 @@ AC_CONFIG_FILES([
     ql/currencies/Makefile
     ql/experimental/Makefile
     ql/experimental/amortizingbonds/Makefile
+    ql/experimental/amortizingpools/Makefile
     ql/experimental/averageois/Makefile
     ql/experimental/barrieroption/Makefile
     ql/experimental/basismodels/Makefile
@@ -534,6 +535,7 @@ AC_CONFIG_FILES([
     ql/pricingengines/barrier/Makefile
     ql/pricingengines/basket/Makefile
     ql/pricingengines/bond/Makefile
+    ql/pricingengines/loan/Makefile
     ql/pricingengines/capfloor/Makefile
     ql/pricingengines/cliquet/Makefile
     ql/pricingengines/credit/Makefile

@@ -30,6 +30,7 @@
 #include <ql/instruments/futures.hpp>
 #include <ql/instruments/impliedvolatility.hpp>
 #include <ql/instruments/inflationcapfloor.hpp>
+#include <ql/instruments/loan.hpp>
 #include <ql/instruments/lookbackoption.hpp>
 #include <ql/instruments/makecapfloor.hpp>
 #include <ql/instruments/makecds.hpp>
