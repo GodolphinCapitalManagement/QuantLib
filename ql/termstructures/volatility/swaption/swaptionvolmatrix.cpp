@@ -2,7 +2,7 @@
 
 /*
  Copyright (C) 2006, 2008 Ferdinando Ametrano
- Copyright (C) 2006 François du Vignaud
+ Copyright (C) 2006 FranÃ§ois du Vignaud
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2015 Peter Caspers
@@ -47,8 +47,8 @@ namespace QuantLib {
       volHandles_(vols), shiftValues_(shifts),
       volatilities_(vols.size(), vols.front().size()),
       shifts_(vols.size(), vols.front().size(), 0.0), volatilityType_(type) {
-        checkInputs(volatilities_.rows(), volatilities_.columns(),
-                    shifts.size(), shifts.size() == 0 ? 0 : shifts.front().size());
+        checkInputs(volatilities_.rows(), volatilities_.columns(), shifts.size(),
+                    shifts.empty() ? 0 : shifts.front().size());
         registerWithMarketData();
         if (flatExtrapolation) {
             interpolation_ =
@@ -85,8 +85,8 @@ namespace QuantLib {
       volHandles_(vols), shiftValues_(shifts),
       volatilities_(vols.size(), vols.front().size()),
       shifts_(vols.size(), vols.front().size(), 0.0), volatilityType_(type) {
-        checkInputs(volatilities_.rows(), volatilities_.columns(),
-                    shifts.size(), shifts.size() == 0 ? 0 : shifts.front().size());
+        checkInputs(volatilities_.rows(), volatilities_.columns(), shifts.size(),
+                    shifts.empty() ? 0 : shifts.front().size());
         registerWithMarketData();
         if (flatExtrapolation) {
             interpolation_ =
@@ -346,7 +346,7 @@ namespace QuantLib {
         for (Size i=0; i<volatilities_.rows(); ++i) {
             for (Size j=0; j<volatilities_.columns(); ++j) {
                 volatilities_[i][j] = volHandles_[i][j]->value();
-                if(shiftValues_.size() > 0)
+                if (!shiftValues_.empty())
                     shifts_[i][j] = shiftValues_[i][j];
             }
         }

@@ -54,18 +54,17 @@ namespace QuantLib {
                         Calendar paymentCalendar = Calendar(),
                         bool telescopicValueDates = false);
 
-        OvernightIndexedSwap(
-                        Type type,
-                        std::vector<Real> nominals,
-                        const Schedule& schedule,
-                        Rate fixedRate,
-                        const DayCounter& fixedDC,
-                        const ext::shared_ptr<OvernightIndex>& overnightIndex,
-                        Spread spread = 0.0,
-                        Natural paymentLag = 0,
-                        BusinessDayConvention paymentAdjustment = Following,
-                        Calendar paymentCalendar = Calendar(),
-                        bool telescopicValueDates = false);
+        OvernightIndexedSwap(Type type,
+                             const std::vector<Real>& nominals,
+                             const Schedule& schedule,
+                             Rate fixedRate,
+                             const DayCounter& fixedDC,
+                             const ext::shared_ptr<OvernightIndex>& overnightIndex,
+                             Spread spread = 0.0,
+                             Natural paymentLag = 0,
+                             BusinessDayConvention paymentAdjustment = Following,
+                             Calendar paymentCalendar = Calendar(),
+                             bool telescopicValueDates = false);
 
         //! \name Inspectors
         //@{
@@ -79,7 +78,7 @@ namespace QuantLib {
         Rate fixedRate() const { return fixedRate_; }
         const DayCounter& fixedDayCount() { return fixedDC_; }
 
-        const ext::shared_ptr<OvernightIndex>& overnightIndex();
+        const ext::shared_ptr<OvernightIndex>& overnightIndex() { return overnightIndex_; }
         Spread spread() { return spread_; }
 
         const Leg& fixedLeg() const { return legs_[0]; }
