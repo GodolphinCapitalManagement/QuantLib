@@ -34,9 +34,8 @@ namespace QuantLib {
     class DiscountingLoanEngine : public Loan::engine {
       public:
         DiscountingLoanEngine(
-              const Handle<YieldTermStructure>& discountCurve =
-                                                Handle<YieldTermStructure>(),
-              boost::optional<bool> includeSettlementDateFlows = boost::none);
+            const Handle<YieldTermStructure>& discountCurve = Handle<YieldTermStructure>(),
+            const boost::optional<bool>& includeSettlementDateFlows = boost::none);
         void calculate() const;
         Handle<YieldTermStructure> discountCurve() const {
             return discountCurve_;
