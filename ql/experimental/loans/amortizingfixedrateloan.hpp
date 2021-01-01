@@ -47,17 +47,16 @@ namespace QuantLib {
             daycount is only used for quoting/settlement purposes -
             not for calculating the coupons.
         */
-        AmortizingFixedRateLoan(
-                          Natural settlementDays,
-                          const Calendar& calendar,
-                          Real faceAmount,
-                          const Date& startDate,
-                          const Period& loanTenor,
-                          const Frequency& sinkingFrequency,
-                          const Rate coupon,
-                          const DayCounter& accrualDayCounter,
-                          BusinessDayConvention paymentConvention = Following,
-                          const Date& issueDate = Date());
+        AmortizingFixedRateLoan(Natural settlementDays,
+                                const Calendar& calendar,
+                                Real faceAmount,
+                                const Date& startDate,
+                                const Period& loanTenor,
+                                const Frequency& sinkingFrequency,
+                                Rate coupon,
+                                const DayCounter& accrualDayCounter,
+                                BusinessDayConvention paymentConvention = Following,
+                                const Date& issueDate = Date());
         Frequency frequency() const { return frequency_; }
         const DayCounter& dayCounter() const { return dayCounter_; }
       protected:
