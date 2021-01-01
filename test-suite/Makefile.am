@@ -20,6 +20,7 @@ QL_TEST_SRCS = \
 	brownianbridge.cpp \
 	businessdayconventions.cpp \
 	calendars.cpp \
+	callablebonds.cpp \
 	capfloor.cpp \
 	capflooredcoupon.cpp \
 	cashflows.cpp \
@@ -147,6 +148,7 @@ QL_TEST_SRCS = \
 	tracing.cpp \
 	twoassetbarrieroption.cpp \
 	twoassetcorrelationoption.cpp \
+	ultimateforwardtermstructure.cpp \
 	utilities.cpp \
 	variancegamma.cpp \
 	varianceoption.cpp \
@@ -176,6 +178,7 @@ QL_TEST_HDRS = \
 	brownianbridge.hpp \
 	businessdayconventions.hpp \
 	calendars.hpp \
+	callablebonds.hpp \
 	capfloor.hpp \
 	capflooredcoupon.hpp \
 	cashflows.hpp \
@@ -304,6 +307,7 @@ QL_TEST_HDRS = \
 	tracing.hpp \
 	twoassetbarrieroption.hpp \
 	twoassetcorrelationoption.hpp \
+	ultimateforwardtermstructure.hpp \
 	utilities.hpp \
 	variancegamma.hpp \
 	varianceoption.hpp \

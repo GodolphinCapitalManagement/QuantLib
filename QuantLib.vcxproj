@@ -540,6 +540,9 @@
     <ClInclude Include="ql\experimental\amortizingbonds\amortizingcmsratebond.hpp" />
     <ClInclude Include="ql\experimental\amortizingbonds\amortizingfixedratebond.hpp" />
     <ClInclude Include="ql\experimental\amortizingbonds\amortizingfloatingratebond.hpp" />
+    <ClInclude Include="ql\experimental\asian\all.hpp" />
+    <ClInclude Include="ql\experimental\asian\analytic_cont_geom_av_price_heston.hpp" />
+    <ClInclude Include="ql\experimental\asian\analytic_discr_geom_av_price_heston.hpp" />
     <ClInclude Include="ql\experimental\averageois\all.hpp" />
     <ClInclude Include="ql\experimental\averageois\arithmeticaverageois.hpp" />
     <ClInclude Include="ql\experimental\averageois\arithmeticoisratehelper.hpp" />
@@ -720,6 +723,8 @@
     <ClInclude Include="ql\experimental\finitedifferences\glued1dmesher.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\modtriplebandlinearop.hpp" />
     <ClInclude Include="ql\experimental\finitedifferences\vanillavppoption.hpp" />
+    <ClInclude Include="ql\experimental\forward\all.hpp" />
+    <ClInclude Include="ql\experimental\forward\analytichestonforwardeuropeanengine.hpp" />
     <ClInclude Include="ql\experimental\futures\all.hpp" />
     <ClInclude Include="ql\experimental\futures\overnightindexfuture.hpp" />
     <ClInclude Include="ql\experimental\futures\overnightindexfutureratehelper.hpp" />
@@ -1008,6 +1013,7 @@
     <ClInclude Include="ql\math\initializers.hpp" />
     <ClInclude Include="ql\math\integrals\all.hpp" />
     <ClInclude Include="ql\math\integrals\discreteintegrals.hpp" />
+    <ClInclude Include="ql\math\integrals\exponentialintegrals.hpp" />
     <ClInclude Include="ql\math\integrals\filonintegral.hpp" />
     <ClInclude Include="ql\math\integrals\gaussianorthogonalpolynomial.hpp" />
     <ClInclude Include="ql\math\integrals\gaussianquadratures.hpp" />
@@ -1454,9 +1460,12 @@
     <ClInclude Include="ql\pricingengines\asian\analytic_discr_geom_av_strike.hpp" />
     <ClInclude Include="ql\pricingengines\asian\fdblackscholesasianengine.hpp" />
     <ClInclude Include="ql\pricingengines\asian\mc_discr_arith_av_price.hpp" />
+    <ClInclude Include="ql\pricingengines\asian\mc_discr_arith_av_price_heston.hpp" />
     <ClInclude Include="ql\pricingengines\asian\mc_discr_arith_av_strike.hpp" />
     <ClInclude Include="ql\pricingengines\asian\mc_discr_geom_av_price.hpp" />
+    <ClInclude Include="ql\pricingengines\asian\mc_discr_geom_av_price_heston.hpp" />
     <ClInclude Include="ql\pricingengines\asian\mcdiscreteasianengine.hpp" />
+    <ClInclude Include="ql\pricingengines\asian\mcdiscreteasianenginebase.hpp" />
     <ClInclude Include="ql\pricingengines\barrier\all.hpp" />
     <ClInclude Include="ql\pricingengines\barrier\analyticbarrierengine.hpp" />
     <ClInclude Include="ql\pricingengines\barrier\analyticbinarybarrierengine.hpp" />
@@ -1498,6 +1507,9 @@
     <ClInclude Include="ql\pricingengines\forward\all.hpp" />
     <ClInclude Include="ql\pricingengines\forward\forwardengine.hpp" />
     <ClInclude Include="ql\pricingengines\forward\forwardperformanceengine.hpp" />
+    <ClInclude Include="ql\pricingengines\forward\mcforwardeuropeanbsengine.hpp" />
+    <ClInclude Include="ql\pricingengines\forward\mcforwardeuropeanhestonengine.hpp" />
+    <ClInclude Include="ql\pricingengines\forward\mcforwardvanillaengine.hpp" />
     <ClInclude Include="ql\pricingengines\forward\mcvarianceswapengine.hpp" />
     <ClInclude Include="ql\pricingengines\forward\replicatingvarianceswapengine.hpp" />
     <ClInclude Include="ql\pricingengines\genericmodelengine.hpp" />
@@ -1727,6 +1739,7 @@
     <ClInclude Include="ql\termstructures\yield\piecewisezerospreadedtermstructure.hpp" />
     <ClInclude Include="ql\termstructures\yield\quantotermstructure.hpp" />
     <ClInclude Include="ql\termstructures\yield\ratehelpers.hpp" />
+    <ClInclude Include="ql\termstructures\yield\ultimateforwardtermstructure.hpp" />
     <ClInclude Include="ql\termstructures\yield\zerocurve.hpp" />
     <ClInclude Include="ql\termstructures\yield\zerospreadedtermstructure.hpp" />
     <ClInclude Include="ql\termstructures\yield\zeroyieldstructure.hpp" />
@@ -1784,6 +1797,7 @@
     <ClInclude Include="ql\time\dategenerationrule.hpp" />
     <ClInclude Include="ql\time\daycounter.hpp" />
     <ClInclude Include="ql\time\daycounters\actual360.hpp" />
+    <ClInclude Include="ql\time\daycounters\actual364.hpp" />
     <ClInclude Include="ql\time\daycounters\actual365fixed.hpp" />
     <ClInclude Include="ql\time\daycounters\actualactual.hpp" />
     <ClInclude Include="ql\time\daycounters\all.hpp" />
@@ -1791,6 +1805,7 @@
     <ClInclude Include="ql\time\daycounters\one.hpp" />
     <ClInclude Include="ql\time\daycounters\simpledaycounter.hpp" />
     <ClInclude Include="ql\time\daycounters\thirty360.hpp" />
+    <ClInclude Include="ql\time\daycounters\thirty365.hpp" />
     <ClInclude Include="ql\time\ecb.hpp" />
     <ClInclude Include="ql\time\frequency.hpp" />
     <ClInclude Include="ql\time\imm.hpp" />
@@ -1848,6 +1863,7 @@
     <ClInclude Include="ql\termstructure.hpp" />
     <ClInclude Include="ql\timegrid.hpp" />
     <ClInclude Include="ql\timeseries.hpp" />
+    <ClInclude Include="ql\tuple.hpp" />
     <ClInclude Include="ql\types.hpp" />
     <ClInclude Include="ql\userconfig.hpp" />
     <ClInclude Include="ql\version.hpp" />
@@ -1893,6 +1909,8 @@
     <ClCompile Include="ql\experimental\amortizingbonds\amortizingcmsratebond.cpp" />
     <ClCompile Include="ql\experimental\amortizingbonds\amortizingfixedratebond.cpp" />
     <ClCompile Include="ql\experimental\amortizingbonds\amortizingfloatingratebond.cpp" />
+    <ClCompile Include="ql\experimental\asian\analytic_cont_geom_av_price_heston.cpp" />
+    <ClCompile Include="ql\experimental\asian\analytic_discr_geom_av_price_heston.cpp" />
     <ClCompile Include="ql\experimental\averageois\arithmeticaverageois.cpp" />
     <ClCompile Include="ql\experimental\averageois\arithmeticoisratehelper.cpp" />
     <ClCompile Include="ql\experimental\averageois\averageoiscouponpricer.cpp" />
@@ -2029,6 +2047,7 @@
     <ClCompile Include="ql\experimental\finitedifferences\fdsimpleklugeextouvppengine.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\glued1dmesher.cpp" />
     <ClCompile Include="ql\experimental\finitedifferences\vanillavppoption.cpp" />
+    <ClCompile Include="ql\experimental\forward\analytichestonforwardeuropeanengine.cpp" />
     <ClCompile Include="ql\experimental\futures\overnightindexfuture.cpp" />
     <ClCompile Include="ql\experimental\futures\overnightindexfutureratehelper.cpp" />
     <ClCompile Include="ql\experimental\fx\blackdeltacalculator.cpp" />
@@ -2217,6 +2236,7 @@
     <ClCompile Include="ql\math\factorial.cpp" />
     <ClCompile Include="ql\math\incompletegamma.cpp" />
     <ClCompile Include="ql\math\integrals\discreteintegrals.cpp" />
+    <ClCompile Include="ql\math\integrals\exponentialintegrals.cpp" />
     <ClCompile Include="ql\math\integrals\filonintegral.cpp" />
     <ClCompile Include="ql\math\integrals\gaussianorthogonalpolynomial.cpp" />
     <ClCompile Include="ql\math\integrals\gaussianquadratures.cpp" />
@@ -2491,8 +2511,10 @@
     <ClCompile Include="ql\pricingengines\asian\analytic_discr_geom_av_strike.cpp" />
     <ClCompile Include="ql\pricingengines\asian\fdblackscholesasianengine.cpp" />
     <ClCompile Include="ql\pricingengines\asian\mc_discr_arith_av_price.cpp" />
+    <ClCompile Include="ql\pricingengines\asian\mc_discr_arith_av_price_heston.cpp" />
     <ClCompile Include="ql\pricingengines\asian\mc_discr_arith_av_strike.cpp" />
     <ClCompile Include="ql\pricingengines\asian\mc_discr_geom_av_price.cpp" />
+    <ClCompile Include="ql\pricingengines\asian\mc_discr_geom_av_price_heston.cpp" />
     <ClCompile Include="ql\pricingengines\barrier\analyticbarrierengine.cpp" />
     <ClCompile Include="ql\pricingengines\barrier\analyticbinarybarrierengine.cpp" />
     <ClCompile Include="ql\pricingengines\barrier\discretizedbarrieroption.cpp" />
@@ -2524,6 +2546,8 @@
     <ClCompile Include="ql\pricingengines\credit\integralcdsengine.cpp" />
     <ClCompile Include="ql\pricingengines\credit\isdacdsengine.cpp" />
     <ClCompile Include="ql\pricingengines\credit\midpointcdsengine.cpp" />
+    <ClCompile Include="ql\pricingengines\forward\mcforwardeuropeanbsengine.cpp" />
+    <ClCompile Include="ql\pricingengines\forward\mcforwardeuropeanhestonengine.cpp" />
     <ClCompile Include="ql\pricingengines\greeks.cpp" />
     <ClCompile Include="ql\pricingengines\inflation\inflationcapfloorengines.cpp" />
     <ClCompile Include="ql\pricingengines\lookback\analyticcontinuousfixedlookback.cpp" />
@@ -2726,6 +2750,7 @@
     <ClCompile Include="ql\time\daycounters\business252.cpp" />
     <ClCompile Include="ql\time\daycounters\simpledaycounter.cpp" />
     <ClCompile Include="ql\time\daycounters\thirty360.cpp" />
+    <ClCompile Include="ql\time\daycounters\thirty365.cpp" />
     <ClCompile Include="ql\time\ecb.cpp" />
     <ClCompile Include="ql\time\frequency.cpp" />
     <ClCompile Include="ql\time\imm.cpp" />

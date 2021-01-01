@@ -666,10 +666,10 @@ namespace {
         const FdmLinearOpIterator endIter = layout->end();
         for (FdmLinearOpIterator iter = layout->begin(); iter != endIter;
               ++iter) {
-            if (iter.coordinates()[1] == 0u) {
+            if (iter.coordinates()[1] == 0U) {
                 x.push_back(mesher->location(iter, 0));
             }
-            if (iter.coordinates()[0] == 0u) {
+            if (iter.coordinates()[0] == 0U) {
                 y.push_back(mesher->location(iter, 1));
             }
         }
@@ -752,7 +752,7 @@ namespace {
         const FdmSquareRootFwdOp::TransformationType transformationType
             = testCase.trafoType;
         Real lowerBound, upperBound;
-        std::vector<boost::tuple<Real, Real, bool> > cPoints;
+        std::vector<ext::tuple<Real, Real, bool> > cPoints;
 
         const SquareRootProcessRNDCalculator rnd(v0, kappa, theta, sigma);
         switch (transformationType) {
@@ -765,9 +765,9 @@ namespace {
             const Real v0Density = 10.0;
             const Real upperBoundDensity = 100;
             const Real lowerBoundDensity = 1.0;
-            cPoints += boost::make_tuple(lowerBound, lowerBoundDensity, false),
-                       boost::make_tuple(v0Center, v0Density, true),
-                       boost::make_tuple(upperBound, upperBoundDensity, false);
+            cPoints += ext::make_tuple(lowerBound, lowerBoundDensity, false),
+                       ext::make_tuple(v0Center, v0Density, true),
+                       ext::make_tuple(upperBound, upperBoundDensity, false);
           }
         break;
         case FdmSquareRootFwdOp::Plain:
@@ -778,8 +778,8 @@ namespace {
             const Real v0Center = v0;
             const Real v0Density = 0.1;
             const Real lowerBoundDensity = 0.0001;
-            cPoints += boost::make_tuple(lowerBound, lowerBoundDensity, false),
-                       boost::make_tuple(v0Center, v0Density, true);
+            cPoints += ext::make_tuple(lowerBound, lowerBoundDensity, false),
+                       ext::make_tuple(v0Center, v0Density, true);
           }
         break;
         case FdmSquareRootFwdOp::Power:
@@ -790,8 +790,8 @@ namespace {
             const Real v0Center = v0;
             const Real v0Density = 1.0;
             const Real lowerBoundDensity = 0.005;
-            cPoints += boost::make_tuple(lowerBound, lowerBoundDensity, false),
-                       boost::make_tuple(v0Center, v0Density, true);
+            cPoints += ext::make_tuple(lowerBound, lowerBoundDensity, false),
+                       ext::make_tuple(v0Center, v0Density, true);
           }
         break;
         default:
@@ -1011,7 +1011,7 @@ namespace {
         return surface;
     }
 
-    boost::tuple<std::vector<Real>, std::vector<Date>,
+    ext::tuple<std::vector<Real>, std::vector<Date>,
                  ext::shared_ptr<BlackVarianceSurface> >
         createSmoothImpliedVol(const DayCounter& dc, const Calendar& cal) {
 
@@ -1066,7 +1066,7 @@ namespace {
                                      BlackVarianceSurface::ConstantExtrapolation));
         volTS->setInterpolation<Bicubic>();
 
-        return boost::make_tuple(surfaceStrikes, dates, volTS);
+        return ext::make_tuple(surfaceStrikes, dates, volTS);
     }
 }
 
@@ -1117,10 +1117,10 @@ void HestonSLVModelTest::testHestonFokkerPlanckFwdEquationLogLVLeverage() {
     const Real lowerBound = rnd.stationary_invcdf(0.01);
 
     const Real beta = 10.0;
-    std::vector<boost::tuple<Real, Real, bool> > critPoints;
-    critPoints.push_back(boost::tuple<Real, Real, bool>(lowerBound, beta, true));
-    critPoints.push_back(boost::tuple<Real, Real, bool>(v0, beta/100, true));
-    critPoints.push_back(boost::tuple<Real, Real, bool>(upperBound, beta, true));
+    std::vector<ext::tuple<Real, Real, bool> > critPoints;
+    critPoints.push_back(ext::tuple<Real, Real, bool>(lowerBound, beta, true));
+    critPoints.push_back(ext::tuple<Real, Real, bool>(v0, beta/100, true));
+    critPoints.push_back(ext::tuple<Real, Real, bool>(upperBound, beta, true));
     const ext::shared_ptr<Fdm1dMesher> varianceMesher(
 		ext::make_shared<Concentrating1dMesher>(lowerBound, upperBound, vGrid, critPoints));
 
@@ -1131,12 +1131,12 @@ void HestonSLVModelTest::testHestonFokkerPlanckFwdEquationLogLVLeverage() {
     const ext::shared_ptr<FdmMesherComposite>
         mesher(ext::make_shared<FdmMesherComposite>(equityMesher, varianceMesher));
 
-    const boost::tuple<std::vector<Real>, std::vector<Date>,
+    const ext::tuple<std::vector<Real>, std::vector<Date>,
                  ext::shared_ptr<BlackVarianceSurface> > smoothSurface =
         createSmoothImpliedVol(dayCounter, calendar);
     const ext::shared_ptr<BlackScholesMertonProcess> lvProcess(
 		ext::make_shared<BlackScholesMertonProcess>(spot, qTS, rTS,
-            Handle<BlackVolTermStructure>(smoothSurface.get<2>())));
+        Handle<BlackVolTermStructure>(ext::get<2>(smoothSurface))));
 
     // step two days using non-correlated process
     const Time eT = 2.0/365;
@@ -1177,10 +1177,10 @@ void HestonSLVModelTest::testHestonFokkerPlanckFwdEquationLogLVLeverage() {
 
     const std::vector<Real> ds(denseStrikes, denseStrikes+LENGTH(denseStrikes));
 
-    Matrix surface(ds.size(), smoothSurface.get<1>().size());
+    Matrix surface(ds.size(), ext::get<1>(smoothSurface).size());
     std::vector<Time> times(surface.columns());
 
-    const std::vector<Date> dates = smoothSurface.get<1>();
+    const std::vector<Date> dates = ext::get<1>(smoothSurface);
     ext::shared_ptr<Matrix> m = createLocalVolMatrixFromProcess(
         lvProcess, ds, dates, times);
 
@@ -1267,14 +1267,14 @@ void HestonSLVModelTest::testBlackScholesFokkerPlanckFwdEquationLocalVol() {
     const Handle<YieldTermStructure> qTS(
             flatRate(todaysDate, q, dayCounter));
 
-    boost::tuple<std::vector<Real>, std::vector<Date>,
+    ext::tuple<std::vector<Real>, std::vector<Date>,
             ext::shared_ptr<BlackVarianceSurface> > smoothImpliedVol =
             createSmoothImpliedVol(dayCounter, calendar);
 
-    const std::vector<Real>& strikes = smoothImpliedVol.get<0>();
-    const std::vector<Date>& dates = smoothImpliedVol.get<1>();
+    const std::vector<Real>& strikes = ext::get<0>(smoothImpliedVol);
+    const std::vector<Date>& dates = ext::get<1>(smoothImpliedVol);
     const Handle<BlackVolTermStructure> vTS =
-        Handle<BlackVolTermStructure>(smoothImpliedVol.get<2>());
+        Handle<BlackVolTermStructure>(ext::get<2>(smoothImpliedVol));
 
     const Size xGrid = 101;
     const Size tGrid = 51;
@@ -1567,7 +1567,7 @@ void HestonSLVModelTest::testLocalVolsvSLVPropDensity() {
         flatRate(todaysDate, q, dayCounter));
 
     const Handle<BlackVolTermStructure> vTS = Handle<BlackVolTermStructure>(
-        createSmoothImpliedVol(dayCounter, calendar).get<2>());
+        ext::get<2>(createSmoothImpliedVol(dayCounter, calendar)));
 
     // Heston parameter from implied calibration
     const Real kappa =  2.0;
@@ -2025,15 +2025,13 @@ void HestonSLVModelTest::testMonteCarloCalibration() {
 
         const ext::shared_ptr<LocalVolTermStructure> leverageFct =
             HestonSLVMCModel(
-                Handle<LocalVolTermStructure>(localVol),
-                Handle<HestonModel>(hestonModel),
-                sobol ? ext::shared_ptr<BrownianGeneratorFactory>(
-                            new SobolBrownianGeneratorFactory(
-                                SobolBrownianGenerator::Diagonal,
-                                1234ul, SobolRsg::JoeKuoD7))
-                      : ext::shared_ptr<BrownianGeneratorFactory>(
-                              new MTBrownianGeneratorFactory(1234ul)),
-                maturityDate, 91, xGrid, nSim).leverageFunction();
+                Handle<LocalVolTermStructure>(localVol), Handle<HestonModel>(hestonModel),
+                sobol ? ext::shared_ptr<BrownianGeneratorFactory>(new SobolBrownianGeneratorFactory(
+                            SobolBrownianGenerator::Diagonal, 1234UL, SobolRsg::JoeKuoD7)) :
+                        ext::shared_ptr<BrownianGeneratorFactory>(
+                            new MTBrownianGeneratorFactory(1234UL)),
+                maturityDate, 91, xGrid, nSim)
+                .leverageFunction();
 
         const ext::shared_ptr<PricingEngine> bsEngine(
             ext::make_shared<AnalyticEuropeanEngine>(
@@ -2049,7 +2047,7 @@ void HestonSLVModelTest::testMonteCarloCalibration() {
 
         Real qualityFactor = 0.0;
         Real maxQualityFactor = 0.0;
-        Size nValues = 0u;
+        Size nValues = 0U;
 
         for (Size i=0; i < LENGTH(maturities); ++i) {
             const Date maturity(maturities[i]);
@@ -2152,11 +2150,10 @@ void HestonSLVModelTest::testForwardSkewSLV() {
 
     const ext::shared_ptr<LocalVolTermStructure> leverageFctMC =
         HestonSLVMCModel(
-            localVol,
-            hestonModel,
-            ext::shared_ptr<BrownianGeneratorFactory>(
-                 new MTBrownianGeneratorFactory(1234ul)),
-            maturityDate, 182, xGrid, nSim).leverageFunction();
+            localVol, hestonModel,
+            ext::shared_ptr<BrownianGeneratorFactory>(new MTBrownianGeneratorFactory(1234UL)),
+            maturityDate, 182, xGrid, nSim)
+            .leverageFunction();
 
     const ext::shared_ptr<HestonSLVProcess> mcSlvProcess(
         ext::make_shared<HestonSLVProcess>(hestonProcess, leverageFctMC));
@@ -2438,9 +2435,8 @@ void HestonSLVModelTest::testMoustacheGraph() {
         getFixedLocalVolFromHeston(hestonModel, timeGrid));
 
     const ext::shared_ptr<BrownianGeneratorFactory> sobolGeneratorFactory(
-        ext::make_shared<SobolBrownianGeneratorFactory>(
-            SobolBrownianGenerator::Diagonal,
-            1234ul, SobolRsg::JoeKuoD7));
+        ext::make_shared<SobolBrownianGeneratorFactory>(SobolBrownianGenerator::Diagonal, 1234UL,
+                                                        SobolRsg::JoeKuoD7));
 
     const Size xGrid = 100;
     const Size nSim  = 20000;
@@ -2564,8 +2560,8 @@ void HestonSLVModelTest::testDiffusionAndDriftSlvProcess() {
     const Size nTimeSteps = 40;
     const DiscountFactor df = rTS->discount(maturity);
 
-    SobolBrownianBridgeRsg rsg(2, nTimeSteps,
-        SobolBrownianGenerator::Diagonal, 12345u, SobolRsg::JoeKuoD7);
+    SobolBrownianBridgeRsg rsg(2, nTimeSteps, SobolBrownianGenerator::Diagonal, 12345U,
+                               SobolRsg::JoeKuoD7);
 
     Array x(2), xt(2), dw(2);
     GeneralStatistics stats;

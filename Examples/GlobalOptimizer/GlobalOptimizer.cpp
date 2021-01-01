@@ -29,7 +29,7 @@
 #include <ql/functional.hpp>
 
 
-#include <boost/tuple/tuple.hpp>
+#include <ql/tuple.hpp>
 #include <iostream>
 #include <iomanip>
 
@@ -38,7 +38,7 @@ using namespace QuantLib;
 #if defined(QL_ENABLE_SESSIONS)
 namespace QuantLib {
 
-    Integer sessionId() { return 0; }
+    ThreadKey sessionId() { return 0; }
 
 }
 #endif

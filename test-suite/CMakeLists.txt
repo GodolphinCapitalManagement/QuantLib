@@ -20,6 +20,7 @@ set(QuantLib-Test_SRC
     brownianbridge.cpp
     businessdayconventions.cpp
     calendars.cpp
+    callablebonds.cpp
     capfloor.cpp
     capflooredcoupon.cpp
     cashflows.cpp
@@ -149,6 +150,7 @@ set(QuantLib-Test_SRC
     transformedgrid.cpp
     twoassetbarrieroption.cpp
     twoassetcorrelationoption.cpp
+    ultimateforwardtermstructure.cpp
     utilities.cpp
     variancegamma.cpp
     varianceoption.cpp

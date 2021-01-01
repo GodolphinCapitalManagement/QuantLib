@@ -58,8 +58,8 @@ namespace swap_test {
         SavedSettings backup;
         
         // utilities
-        ext::shared_ptr<VanillaSwap> makeSwap(Integer length, Rate fixedRate,
-                                                Spread floatingSpread) {
+        ext::shared_ptr<VanillaSwap>
+        makeSwap(Integer length, Rate fixedRate, Spread floatingSpread) const {
             Date maturity = calendar.advance(settlement,length,Years,
                                              floatingConvention);
             Schedule fixedSchedule(settlement,maturity,Period(fixedFrequency),
@@ -320,6 +320,12 @@ void SwapTest::testCachedValue() {
     vars.termStructure.linkTo(flatRate(vars.settlement,0.05,Actual365Fixed()));
 
     ext::shared_ptr<VanillaSwap> swap = vars.makeSwap(10, 0.06, 0.001);
+
+    if (swap->numberOfLegs() != 2)
+        BOOST_ERROR("failed to return correct number of legs:\n"
+                    << std::fixed << std::setprecision(12)
+                    << "    calculated: " << swap->numberOfLegs() << "\n"
+                    << "    expected:   " << 2);
 
     Real cachedNPV;  
     if (IborCoupon::usingAtParCoupons())
