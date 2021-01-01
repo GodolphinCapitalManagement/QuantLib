@@ -129,6 +129,7 @@ QuantLib is
     Copyright (C) 2016, 2019, 2020 Eisuke Tani
 
     Copyright (C) 2017 BN Algorithms Ltd
+    Copyright (C) 2017 Gyan Sinha
     Copyright (C) 2017 Joseph Jeisman
     Copyright (C) 2017 Oleg Kulkov
     Copyright (C) 2017 Paul Giltinan
